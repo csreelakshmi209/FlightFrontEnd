@@ -1,4 +1,5 @@
 import React from 'react'
+import Carousel from 'react-bootstrap/Carousel';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -12,81 +13,80 @@ import jaipur from "../Images/jaipur.jpg";
 import delhi from "../Images/delhi.jpg";
 import bangalore from "../Images/bangalore.jpg";
 import udaipur from "../Images/udaipur.webp";
+import fly1 from "../Images/fly1.jpg";
 import bg from "../Images/float/bg.jpg";
-import flying from "../Images/float/flying.webp";
-import lag from "../Images/float/lag.jpg";
+import doc from "../Images/doc.jpg";
+import bg1 from "../Images/bg1.jpg";
 import Grid from '@mui/material/Grid';
 import { Box } from '@mui/material';
+import SearchForm from './searchForm';
 import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
-import MobileStepper from '@mui/material/MobileStepper';
-import Paper from '@mui/material/Paper';
-import { useTheme } from '@mui/material/styles';
-
-const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const Home= () => {
 
   return (
-    <div>
-       
-        <div className="container-fluid   bg-dark background-image" style={{backgroundImage: `url(${delhi})` }} >
-           <div
-            id="carouselExampleFade"
-            class="carousel slide carousel-fade opacity-50 "
-            data-bs-ride="carousel"
-          >
-            <div class="carousel-inner pt-5 padding 20px">
-              <div class="carousel-item active mx auto" data-bs-interval="1000">
-                <img src={lag} class="rounded w-90" height="500 " alt="..." />
-              </div>
-              <div class="carousel-item" data-bs-interval="1000">
-                 <img
-                  src={bg}
-                  class="rounded w-90"
-                  height="500"
-                  width="765"
-                  alt="..."
-                />
-              </div>  
-              <div class="carousel-item" data-bs-interval="1000">
-                 <img
-                  src={flying}
-                  class="rounded w-90"
-                  height="500"
-                  width="765"
-                  alt="..."
-                />
-              </div>
-            </div>
-            <button
-              class="carousel-control-prev"
-              type="button"
-              data-bs-target="#carouselExampleFade"
-              data-bs-slide="prev"
-            >
-              <span
-                class="carousel-control-prev-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button
-              class="carousel-control-next"
-              type="button"
-              data-bs-target="#carouselExampleFade"
-              data-bs-slide="next"
-            >
-              <span
-                class="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
-        </div>      
+    <div  style={{backgroundImage: `url(${bg1})` }}>
+     
+<div class="container">
+  <div class="row mt-0">
+    <div class="col-9 mt-0">
+    <Carousel >
+      <Carousel.Item interval={1000} className="">
+        <img
+          className="d-block w-100 "
+          src={bg}
+          alt="First slide"
+          height="500"
+          width="500"
+        />
+        <Carousel.Caption>
+          <h3>First slide label</h3>
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item interval={500}>
+        <img
+          className="d-block w-100"
+          src={fly1}
+          alt="Second slide"
+          height="500"
+          width="500"
+        />
+        <Carousel.Caption>
+          <h3>Second slide label</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src={doc}
+          alt="Third slide"
+          height="500"
+          width="500"
+        />
+        <Carousel.Caption>
+          <h3>Third slide label</h3>
+          <p>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+          </p>
+        </Carousel.Caption>
+      </Carousel.Item>
+    </Carousel>
+    </div>
+    <div class="col">
+     {/* <SearchForm/> */}
+    </div>
+  </div>
+
+</div>
+
+
+
+
         <h2>Explore India</h2>
         <strong>These popular destinations have a lot to offer</strong>
         <br/> <br/>
