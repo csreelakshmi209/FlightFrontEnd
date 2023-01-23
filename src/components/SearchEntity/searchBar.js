@@ -1,7 +1,21 @@
-import React from 'react'
+import React,{useState} from 'react'
+
+import {useNavigate} from 'react-router-dom'
+import Booking from '../Booking';
 
 const SearchBar = (props) => {
-  const {data}=props;
+  
+  const {data, selectedFare}=props;
+  const fareLabel= selectedFare.label;
+  const fareValue= selectedFare.value;
+
+  const [showBooking, setShowBooking] = useState(false);
+
+  if(data.length === 0) return <div>No flights available</div>;
+
+  const handleBookClick = () => {
+    setShowBooking(true);
+  }
 
   return (
     <div>
@@ -12,22 +26,32 @@ const SearchBar = (props) => {
           <th scope="col">Leave From</th>
           <th scope="col">Go To</th>
           <th scope="col">Departure Date</th>
-          <th scope="col">Economy Fare</th>
+          <th scope="col">Fare class</th>
+          <th scope="col"> Fare price</th>
         </tr>
       </thead>
       <tbody>
        
-        {data.map((item) => (
+        {data.map((item) => 
+        {
+          
+        return (
           <tr key={item.flightDto.flightNum}>
             <th scope="row">{item.flightDto.flightNum}</th>
             <td>{item.flightDto.origin}</td>
             <td>{item.flightDto.destination}</td>
             <td>{item.flightDto.departureDate}</td>
-            <td>{item.fareDto.economyFare}</td>
+            <td>{fareLabel}</td>
+            <td>{item.fareDto[fareValue]}</td>
+            <button onClick={handleBookClick}>Book Now
+  {showBooking ? <Booking flight={item.flightDto} fareLabel={fareLabel} fare={item.fareDto[fareValue]}  seats={item.seats} /> : null}
+</button>
+
           </tr>
-        ))}
+        )})}     
       </tbody>
     </table>
+    
     </div>
   )
 }
@@ -35,123 +59,62 @@ const SearchBar = (props) => {
 export default SearchBar
 
 
-{/* // import React ,{useState,useEffect} from "react";
-// import axios from "axios";
-// import { Link } from "react-router-dom";
-// import { connect } from "react-redux";
 
-// const SearchBar =(props)=>{ */}
-{/* //     console.log(props);
-  
-//     return (
-//       <div>
-//         <div >
-//         <table className='table table-bordered table-hover'>
-//         <thead className='table-dark'>
-//             <tr>
-//               <th>Id</th>
-              
-//               <th>origin</th>
-//               <th>destination</th>
-//               <th>departureDate</th>
-//               <th>Economy Fare</th>
-             
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {props.tableData} */}
-//             {/* {tableData ?.map((s)=>(
-//               <tr >
-//               <td>{s.data.flightDto.origin}</td>
-//               <td>{s.flightDto.destination}</td>
-//               <td>{s.flightDto.departureDate}</td>
-//               <td>{s.fareDto.economyFare}</td>
-//               </tr> */}
-//             {/* ))} */}
-          
-//           </tbody>
-//           </table>
+// import React from 'react'
 
-//         </div>
-//       </div>
-//     );
-//   }
-//   export default SearchBar;
+// import {useNavigate} from 'react-router-dom'
+// import Booking from '../Booking';
 
-// import React ,{useState,useEffect} from "react";
-// import axios from "axios";
-// import { Link } from "react-router-dom";
-// // import bangalore from "../Images/bangalore.jpg";
-// import { connect } from "react-redux";
+// const SearchBar = (props) => {
+//   const navigate=useNavigate();
+//   const {data, selectedFare}=props;
+//   const fareLabel= selectedFare.label;
+//   const fareValue= selectedFare.value;
 
-// const SearchBar =({data})=>{
-//    const {flights}=data
-  
-//   useEffect(()=>{
-//     axios
-//     .get(`http://localhost:8181/api/flight/getFare/bangalore/venkatagiri/2023-2-3`)
-//     .then((res) => {
-//       console.log(res);
-//       // this.setState({ flights: res.data });
-//     })
-//     .catch((err) => console.log(err));
-
-//     },[]); 
-
-// //we can put handleDelete here 
-  
-//     return (
-//       <div
-//         // style={{
-//         //   backgroundImage: `url(${banglore})`,
-//         //   backgroundSize: "cover",
-//         //   width: "1280px",
-//         //   height: "1000px",
-//         // }}
-//       >
+//   if(data.length === 0) return <div>No flights available</div>;
+ 
+//   return (
+//     <div>
+//       <table class="table table-striped table-hover">
+//       <thead class="thead-light  bg-dark text-white table-responsive-lg">
+//         <tr>
+//           <th scope="col">Flight Number</th>
+//           <th scope="col">Leave From</th>
+//           <th scope="col">Go To</th>
+//           <th scope="col">Departure Date</th>
+//           <th scope="col">Fare class</th>
+//           <th scope="col"> Fare price</th>
+//         </tr>
+//       </thead>
+//       <tbody>
        
-//         <div >
-//         <table className='table table-bordered table-hover'>
-//         <thead className='table-dark'>
-//             <tr>
-//               <th>Id</th>
-              
-//               <th>origin</th>
-//               <th>destination</th>
-//               <th>departureDate</th>
-//               <th>Economy Fare</th>
-             
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {/* <tr>
-//               <td>{origin}</td>
-//               <td>{destination}</td>
-//               <td>{departureDate}</td>
-//             </tr> */}
-//             {flights ?.map((s)=>(
-//               <tr >
-//               <td>{s.flightDto.origin}</td>
-//               <td>{s.flightDto.destination}</td>
-//               <td>{s.flightDto.departureDate}</td>
-//               <td>{s.fareDto.economyFare}</td>
-//               </tr>
-//             ))}
+//         {data.map((item) => 
+//         {
           
-//           </tbody>
-//           </table>
+//         return (
+//           <tr key={item.flightDto.flightNum}>
+//             <th scope="row">{item.flightDto.flightNum}</th>
+//             <td>{item.flightDto.origin}</td>
+//             <td>{item.flightDto.destination}</td>
+//             <td>{item.flightDto.departureDate}</td>
+//             <td>{fareLabel}</td>
+//             <td>{item.fareDto[fareValue]}</td>
+           
+           
+//             {/* <td>
+//                   <button onClick={() => navigate("/passengerDetails")}>
+//                     Add Passenger
+//                   </button>
+//                 </td> */}
+//           </tr>
+//         )})}     
+//       </tbody>
+//     </table>
+    
+//     </div>
+//   )
+// }
 
-//         </div>
-//       </div>
-//     );
-//   }
+// export default SearchBar
 
-// funtion to get updates from store
-//export default SearchBar;
-// const mapStateToProps = (state) => {
-//   return {
-//     login: state.login,
-//   };
-// };
-// export default connect(mapStateToProps)(Flights);
 

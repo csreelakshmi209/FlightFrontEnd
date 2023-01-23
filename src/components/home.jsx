@@ -24,9 +24,11 @@ import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
+import { useNavigate } from 'react-router-dom';
 
 const Home= () => {
-
+ 
+    const navigate = useNavigate();
   return (
     <div  style={{backgroundImage: `url(${bg1})` }}>
      
@@ -78,7 +80,8 @@ const Home= () => {
     </Carousel>
     </div>
     <div class="col">
-     {/* <SearchForm/> */}
+      <br/> <br/> <br/>
+     <button onClick={()=>{ navigate('/searchForm');}}><h1>Check and Book your tickets</h1></button>
     </div>
   </div>
 

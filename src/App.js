@@ -5,10 +5,10 @@ import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import React from 'react';
 import Passenger from './components/passenger';
 import SearchForm from './components/searchForm';
-import Flights from './components/flights';
+//import Flights from './components/flights';
 import Marquee from "react-fast-marquee";
-import FlightsClass from './components/SearchEntity/flightsClass';
-import SearchFilter from './components/SearchEntity/searchBar';
+import Booking from './components/Booking';
+//import FlightsClass from './components/SearchEntity/flightsClass';
 
 const App =()=> {
   return (
@@ -21,12 +21,12 @@ const App =()=> {
 </Marquee>
         <NavBar/>
         <Routes>
-          <Route path="/home" element={<Home/>} />
+          <Route path="/" element={<Home/>} />
           <Route path="/searchForm" element={<SearchForm/>}/>   
-          <Route path="/passengerDetails" element={<Passenger/>}/>
-          <Route path="/flightsForm" element={<Flights/>}/>
-          <Route path="/flightsClass" element={<FlightsClass/>}/>
-          <Route path="/searchBar" element={<SearchFilter/>}/>
+          <Route path="/passenger" element={<Passenger/>}/>
+          <Route path="/booking" element={<Booking/>}/>
+          {/* <Route path="/flightData" element={<FlightData/>}/> */}
+        
         </Routes>
       </BrowserRouter>
       </center>
