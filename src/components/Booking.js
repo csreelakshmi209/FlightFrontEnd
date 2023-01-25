@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Passenger from './passenger';
 import axios from 'axios';
+import PayNow from './SearchEntity/payNow';
 
 const Booking = ({flight,fare,fareLabel}) => {
     const navigate = useNavigate();
@@ -21,9 +22,7 @@ const Booking = ({flight,fare,fareLabel}) => {
             setTotalFare(totalFare - fare);
           
         } 
-        if (selectedSeats.length >= 3) {
-            return;
-        }
+        
         else {
             setSelectedSeats([...selectedSeats, seat]);
             setTotalFare(totalFare + fare);
@@ -42,10 +41,10 @@ const Booking = ({flight,fare,fareLabel}) => {
         axios.post('http://localhost:9093/api/book/addBooking', {
             origin: flight.origin,
             destination: flight.destination,
-             departureDate: flight.departureDate,
-             selectedFare: flight.selectedFare,
-             flightName:flight.flightName,
-             flightNum: flight.flightNum,
+            departureDate: flight.departureDate,
+            selectedFare: flight.selectedFare,
+            flightName:flight.flightName,
+            flightNum: flight.flightNum,
             fare: fare,
             fareLabel:fareLabel,
             totalFare: totalFare,
@@ -57,7 +56,7 @@ const Booking = ({flight,fare,fareLabel}) => {
         })
             .then(response => {
                 console.log(response);
-                navigate("/passenger", { state: { selectedSeats } });
+                navigate("/passenger", { state: { flight, fare, fareLabel, totalFare, selectedSeats } });
             })
             .catch(error => {
                 console.log(error);
@@ -86,15 +85,12 @@ const Booking = ({flight,fare,fareLabel}) => {
      
     return (
         <div>
-     <div className="row">
+     <div className="row mx-auto">
             {seats.map((seat) => (
                 <div key={seat} className="col-3">
                     <div className="card">
                         <div className="card-body">
                             <h5> {seat}</h5>
-                            {/* <button className="btn btn-primary" onClick={() => handleSelectSeat(seat)}>
-                                {selectedSeats.includes(seat) ? 'Deselect' : 'Select'}
-                            </button> */}
                         </div>
                     </div>
                 </div>
@@ -102,7 +98,8 @@ const Booking = ({flight,fare,fareLabel}) => {
         </div>
         <div>Total Fare: {totalFare}</div>
         <button onClick={handleSubmit}>Submit</button>
-        {selectedSeats.length}                 
+        {selectedSeats.length}
+        {totalFare && <PayNow totalFare={totalFare} />}             
     </div>
 )
 }

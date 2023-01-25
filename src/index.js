@@ -1,17 +1,42 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { QueryClient,QueryClientProvider } from 'react-query';
+import {BrowserRouter} from "react-router-dom";
+import { createStore, applyMiddleware, compose } from "redux";
+import rootReducer from './reducers/rootreducer';
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+// Persisting store
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-const queryClient=new QueryClient();
-root.render(
+// Persisting redux state changes
+const persistConfig = {
+  key: "root",
+  storage,
+};
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+// Create store
+const store = createStore(
+  persistedReducer,
+  compose(
+    applyMiddleware(thunk),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
+);
+
+ReactDOM.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}/>
-    <App />
-  </React.StrictMode>
+    <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+    </BrowserRouter>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -90,7 +90,7 @@ const Home= () => {
 
 
 
-        <h2>Explore India</h2>
+        {/* <h2>Explore India</h2>
         <strong>These popular destinations have a lot to offer</strong>
         <br/> <br/>
         <Grid container spacing={2} cols={6} rowHeight={164}>
@@ -227,7 +227,8 @@ const Home= () => {
       </CardActions>
     </Card>
     
-    </Grid>
+    </Grid> */}
+        <SearchForm/>
     <br/>
         <Footer/>
     </div>

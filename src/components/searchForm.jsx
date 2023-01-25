@@ -3,9 +3,6 @@ import axios from 'axios';
 import {useNavigate} from 'react-router-dom'
 import SearchBar from './SearchEntity/searchBar';
 import Select from 'react-select';
-
-import { Label } from '@material-ui/icons';
-import { FormGroup } from 'react-bootstrap';
 import {Paper,Box,Grid,TextField,MenuItem,Typography,FormControl,InputLabel,Button  
   } from '@material-ui/core';
 
@@ -38,7 +35,6 @@ const FlightApp = () => {
       }
       }
         );
-      //console.log(res.params.origin);
       setResponseData(res.data);
       setShowTable(true);
       console.log(res);
