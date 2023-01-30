@@ -13,6 +13,7 @@ import LogIn from './components/SearchEntity/login';
 import Payment from './components/SearchEntity/payment';
 import PayNow from './components/SearchEntity/payNow';
 import AllDetails from './components/SearchEntity/allDetails';
+import CheckIn from './components/checkIn';
 //import FlightsClass from './components/SearchEntity/flightsClass';
 
 const App =()=> {
@@ -25,6 +26,7 @@ const App =()=> {
       <h1 >Welcome to Brown Field Airlines</h1>
 </Marquee>
         <NavBar/>
+        <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/searchForm" element={<SearchForm/>}/>   
@@ -35,10 +37,10 @@ const App =()=> {
           <Route path="/payment" element={<Payment/>}/>
           <Route path="/payNow" element={<PayNow/>}/>
           <Route path="/allDetails" element={<AllDetails/>}/>
-          {/* <Route path="/flightData" element={<FlightData/>}/> */}
+          <Route path="/checkIn" element={<CheckIn/>}/>
         
         </Routes>
-    
+        </BrowserRouter>
       </center>
       </React.Fragment>
   );

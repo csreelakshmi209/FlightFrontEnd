@@ -12,9 +12,7 @@ const Booking = ({flight,fare,fareLabel}) => {
      const [totalFare, setTotalFare] = useState(0);
     
 
-    const handleBookNow = () => {
-        setShowSeats(true);
-    }
+
     const handleSelectSeat = (seat) => {
           
         if (selectedSeats.includes(seat)) {

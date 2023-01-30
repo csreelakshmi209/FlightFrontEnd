@@ -1,18 +1,22 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import { TextField } from '@mui/material';
 import { useLocation } from "react-router-dom";
 
 const PayNow = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const { flight, fare, fareLabel, totalFare, selectedSeats,initialData ,data} = location.state;
-  console.log(totalFare);
+
+  if(location.state){
+    const { flight, fare, fareLabel, totalFare, selectedSeats,passenger,data } = location.state;
+    console.log(totalFare);
+  // const { flight, fare, fareLabel, totalFare, selectedSeats,initialData ,data} = location.state;
+  // console.log(totalFare);
    
   const handlePayment = () => {
     alert("Payment successful!");
-    navigate("/AllDetails", { state: { flight, fare, fareLabel, totalFare, selectedSeats, initialData, data } });
+    navigate("/AllDetails", { state: { flight, fare, fareLabel, totalFare, selectedSeats,passenger,data } });
+    
   };
   return (
     <div>
@@ -21,5 +25,5 @@ const PayNow = () => {
     </div>
   )
 }
-
+}
 export default PayNow

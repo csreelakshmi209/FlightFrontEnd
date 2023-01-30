@@ -9,7 +9,7 @@ const Payment = () => {
     const navigate = useNavigate();
 
     const location = useLocation();
-  const { flight, fare, fareLabel, totalFare, selectedSeats } = location.state;
+  const { flight, fare, fareLabel, totalFare, selectedSeats,passenger } = location.state;
 
     const [data,setData]=useState({
        cardHolderName:'',
@@ -39,7 +39,7 @@ const Payment = () => {
         })
             .then(response => {
                 console.log(response);
-                navigate("/payNow", { state: { flight, fare, fareLabel, totalFare, selectedSeats,data } });
+                navigate("/payNow", { state: { flight, fare, fareLabel, totalFare, selectedSeats,passenger,data } });
                 console.log(totalFare);
             })
             .catch(error => {
